@@ -1,0 +1,96 @@
+# **CONCLUSIONES Y HALLAZGOS - EJERCICIO 2 API AUTOMATION**
+================================================
+
+**FECHA DE EJECUCIÓN:** 4/2/2026  
+**VERSIÓN KARATE:** 1.4.1  
+**JAVA VERSIÓN:** 11  
+**TIEMPO DE EJECUCIÓN:** 4.13 segundos  
+
+## **RESULTADO DE LA AUTOMATIZACIÓN:**
+----------------------------------
+**FLUJO COMPLETO EXITOSO:** La automatización ejecutó correctamente 5 escenarios API:
+   - Registro exitoso de usuario nuevo
+   - Validación de usuario existente
+   - Login con credenciales válidas
+   - Login con contraseña incorrecta
+   - Login con usuario inexistente
+
+**ESTABILIDAD:** 100% de pruebas exitosas en ejecuciones consecutivas  
+**PERFORMANCE:** Tiempos de respuesta API < 900ms por petición  
+**MANTENIBILIDAD:** Sintaxis BDD simple con mínima necesidad de código Java  
+
+## **ARQUITECTURA IMPLEMENTADA:**
+-----------------------------
+**• PATRÓN BDD (Behavior Driven Development):**
+   - Feature files en lenguaje Gherkin para especificaciones ejecutables
+   - Escenarios comprensibles por stakeholders técnicos y no técnicos
+   - Reportes HTML que muestran comportamiento real vs esperado
+
+**• KARATE FRAMEWORK:**
+   - Sintaxis simplificada para pruebas API sin boilerplate code
+   - Validaciones integradas para JSON, XML, texto plano
+   - Manejo automático de HTTP headers y content types
+   - Reportes detallados con requests/responses completos
+
+**• BUENAS PRÁCTICAS DE PRUEBAS API:**
+   - Generación dinámica de datos de prueba
+   - Validación de status codes y response bodies
+   - Manejo de casos positivos y negativos
+   - Logging detallado para debugging
+
+## **HALLADOS DURANTE LA AUTOMATIZACIÓN:**
+--------------------------------------
+**OBSERVACIONES POSITIVAS:**
+   - La API de Demoblaze es consistente y confiable
+   - Los mensajes de error son descriptivos y útiles
+   - Los endpoints responden dentro de tiempos aceptables
+   - La estructura de respuestas es predecible
+
+**DETALLES ENCONTRADOS EN LA API:**
+   - Registro exitoso: Retorna string vacío "" (no objeto JSON)
+   - Error usuario duplicado: "This user already exist." (typo en "exist")
+   - Login exitoso: Token en formato "Auth_token: [valor_base64]"
+   - Error contraseña: "Wrong password." (punto incluido)
+   - Error usuario inexistente: "User does not exist."
+   - Todos los errores retornan status 200 (no 4xx)
+
+## **DESAFÍOS SUPERADOS:**
+----------------------
+**CONFIGURACIÓN DE DEPENDENCIAS:**
+   - Confusión entre karate-junit5 y karate-apache
+   - **SOLUCIÓN:** Uso exclusivo de karate-junit5 1.4.1
+   - **RESULTADO:** Build exitoso con Maven
+
+**GENERACIÓN DE DATOS ÚNICOS:**
+   - Necesidad de usuarios únicos entre ejecuciones
+   - **SOLUCIÓN:** JavaScript + timestamp + random number
+   - **RESULTADO:** Datos únicos sin conflictos
+
+**VALIDACIÓN DE RESPONSE BODIES:**
+   - Respuesta vacía en registro exitoso
+   - **SOLUCIÓN:** match response == "" (string vacío)
+   - **RESULTADO:** Validación precisa del comportamiento
+
+**MANEJO DE VERSIONES DE KARATE:**
+   - karate.random() no disponible en versión 1.4.1
+   - **SOLUCIÓN:** Math.random() de JavaScript nativo
+   - **RESULTADO:** Funcionalidad equivalente lograda
+
+## **MÉTRICAS OBTENIDAS:**
+----------------------
+**• Tiempos de respuesta API:**
+   - Registro: 876 ms
+   - Validación usuario existente: 268 ms
+   - Login exitoso: 323 ms
+   - Login con error: 248-281 ms
+
+**• Cobertura de pruebas:**
+   - 5 escenarios / 5 exitosos = 100%
+   - Casos positivos: 2 (registro, login válido)
+   - Casos negativos: 3 (duplicado, pass erróneo, user inexistente)
+
+**• Estabilidad:**
+   - 0 fallos en múltiples ejecuciones
+   - Respuestas consistentes de la API
+   - Reportes generados correctamente cada ejecución
+
