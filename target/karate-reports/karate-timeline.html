@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Karate Timeline</title>
+    <style>
+      body, html { font-family: arial, sans-serif; font-size: 11pt; }
+      #visualization { box-sizing: border-box; width: 100%; height: 300px; }
+      .vis-item.failed { background-color: #F2928C; }
+      .page-heading { padding: 0.5em; margin-bottom: 0.5em; background-color: lightcyan; border: 1px solid gray; }
+    </style>
+    <script src="res/vis.min.js"></script>
+    <link href="res/vis.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="page-heading">
+      <a href="karate-summary.html">Summary</a>
+    </div>     
+    <div id="visualization"></div>
+    <script>
+var groups = [{"content":"main","id":1}];
+var items = [{"id":1,"group":1,"content":"karate\/demoblaze[1:13]","start":1770208014442,"end":1770208016856,"title":"karate\/demoblaze[1:13] 07:26:54.442-07:26:56.856 1. SIGNUP - Create new user successfully"},{"id":2,"group":1,"content":"karate\/demoblaze[2:20]","start":1770208016863,"end":1770208017210,"title":"karate\/demoblaze[2:20] 07:26:56.863-07:26:57.210 2. SIGNUP - Try to create existing user"},{"id":3,"group":1,"content":"karate\/demoblaze[3:27]","start":1770208017219,"end":1770208017540,"title":"karate\/demoblaze[3:27] 07:26:57.219-07:26:57.540 3. LOGIN - Correct credentials"},{"id":4,"group":1,"content":"karate\/demoblaze[4:34]","start":1770208017553,"end":1770208017851,"title":"karate\/demoblaze[4:34] 07:26:57.553-07:26:57.851 4. LOGIN - Incorrect password"},{"id":5,"group":1,"content":"karate\/demoblaze[5:41]","start":1770208017870,"end":1770208018126,"title":"karate\/demoblaze[5:41] 07:26:57.870-07:26:58.126 5. LOGIN - Non-existent user (extra)"}];
+</script>
+    <script>
+      var container = document.getElementById('visualization');
+      var timeline = new vis.Timeline(container);
+      timeline.setOptions({groupOrder: 'content'});
+      timeline.setGroups(new vis.DataSet(groups));
+      timeline.setItems(new vis.DataSet(items));
+    </script>
+  </body>
+</html>
